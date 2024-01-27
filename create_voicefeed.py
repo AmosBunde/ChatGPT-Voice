@@ -29,7 +29,7 @@ for item in feed.entries[:story_limit]:
 print("I am now processing it on ChatGPT")
 
 
-chatgpt_output = openai.ChatCompletion.create(
+chatgpt_output = openai.Completion.create(
  model = "gpt-3.5-turbo",
  message = [{
 	"role": "user",
