@@ -20,7 +20,7 @@ feed = feedparser.parse(kenyan_news)
 stories_today = ""
 story_limit = 20
 
-for item in feed.enteries[:story_limit]:
+for item in feed.entries[:story_limit]:
     stories_today = stories_today + "New Story: " + item.title + "." + item.description
 
 
@@ -45,7 +45,30 @@ print(chat_content)
 print("I am Processing Audio")
 
 voice_id = "lfFqxmNg1PYVjeQXy3hi"
+audio_output = requests.post(
+    "https://api.elevenlabs.io/text-to-speech/" + voice_id,
+    data = json.dumps({
+        "text": chat_content,
+        "voice_settings":{
+            "stability": 0.2,
+            "similarity": 0
+        }
+    }),
+    headers= {
+        "Content-Type": "application/json",
+        "xi-api-key": elevenlab_api_key,
+        "accept": "audio/mpeg"
+    }
+)
 
+if audio_output.status_code == 200:
+    with open("test.mp3", "wb") as output_file:
+        output_file.write(audio_output.content)
+else:
+    print(audio_output.text)
+
+
+print(audio_output)
 
 
 
