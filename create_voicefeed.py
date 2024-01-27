@@ -2,6 +2,8 @@ from dotenv import load_dotenv
 import os
 import openai
 import feedparser
+import json
+import requests
 
 
 load_dotenv()
@@ -40,6 +42,9 @@ chat_content = chat_output.choices[0].message.content
 print(chat_content)
 
 
+print("I am Processing Audio")
+
+voice_id = "lfFqxmNg1PYVjeQXy3hi"
 
 
 
